@@ -7,8 +7,8 @@ from pygame import mixer
 pygame.init()
 
 # define window size
-WINDOW_WIDTH = 1000
-WINDOW_HEIGHT = 500
+WINDOW_WIDTH = 1280
+WINDOW_HEIGHT = 720
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 # window name
@@ -21,8 +21,8 @@ font = pygame.font.Font("assets/fonts/Cardinal-Alternate.ttf", 18)
 TEXT_COLOUR = (255, 255, 255)
 
 # define menu window size
-MENU_WINDOW_WIDTH = 500
-MENU_WINDOW_HEIGHT = 300
+MENU_WINDOW_WIDTH = 400
+MENU_WINDOW_HEIGHT = 620
 
 # define menu buttons size
 BTN_WIDTH = 150
@@ -58,7 +58,7 @@ mixer.music.play()
 # function to draw background
 def draw_bg():
     window.blit(bg_img, (0, 0))
-    
+ 
 # draw map screen
 def draw_map():
     window.blit(map_img, (0, 0))
@@ -78,7 +78,7 @@ def draw_menu():
                 ((WINDOW_WIDTH / 2) - (MENU_WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - (MENU_WINDOW_HEIGHT / 2)))
 
     # main menu title
-    menu_title = font.render("RPG GAME", True, TEXT_COLOUR)
+    menu_title = font.render("301-QUEST", True, TEXT_COLOUR)
     window.blit(menu_title, ((WINDOW_WIDTH / 2) - 51, (WINDOW_HEIGHT / 2) - 128))
    
 
@@ -102,46 +102,41 @@ def draw_menu():
     window.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 310))
     window.blit(exit_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 50, 330))
 
-# map area loop
+
+# exit area back to main menu
+def exit_area():
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q or pygame.K_ESCAPE:
+                print('Quitting')
+                map = False
+                main_menu()
+
+# map area
 def game_map():
     map_area = True
     while map_area:
         draw_map()
         pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    print('Quitting')
-                    map = False
-                    main_menu()
+        exit_area()
 
-# new game area loop
+# new game area
 def new_player():
     player_area = True
     while player_area:
         draw_player()
         pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    print('Quitting')
-                    player_area = False
-                    main_menu()
+        exit_area()
                     
-# settings area loop
+# settings area
 def settings():
     settings_area = True
     while settings_area:
         draw_settings()
         pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    print('Quitting')
-                    settings_area = False
-                    main_menu()
+        exit_area()
                     
-# main menu loop
+# main menu
 def main_menu():
     main_menu = True
     while main_menu:
@@ -162,7 +157,7 @@ def main_menu():
                     print('Settings')
                     running = False
                     settings()
-                if event.key == pygame.K_q:
+                if event.key == pygame.K_q or pygame.K_ESCAPE:
                     print('Quitting')
                     pygame.quit()
 
