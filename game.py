@@ -14,8 +14,12 @@ GAME_DISPLAY = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 # window name
 pygame.display.set_caption("301-QUEST")
 
+
 # define fonts
-font = pygame.font.Font("assets/fonts/Cardinal-Alternate.ttf", 18)
+# returns the font with the desired size
+def get_font(size):
+    return pygame.font.Font("assets/font.ttf", size)
+
 
 # define text colour (white)
 TEXT_COLOUR_WHITE = (255, 255, 255)
@@ -83,26 +87,26 @@ def draw_menu():
                 ((WINDOW_WIDTH / 2) - (MENU_WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - (MENU_WINDOW_HEIGHT / 2)))
 
     # main menu title
-    menu_title = font.render("301-QUEST", True, TEXT_COLOUR_WHITE)
+    menu_title = get_font(18).render("301-QUEST", True, TEXT_COLOUR_WHITE)
     GAME_DISPLAY.blit(menu_title, ((WINDOW_WIDTH / 2) - 51, (WINDOW_HEIGHT / 2) - 128))
 
     # continue button
-    continue_btn = font.render("Continue (C)", True, TEXT_COLOUR_WHITE)
+    continue_btn = get_font(18).render("Continue (C)", True, TEXT_COLOUR_WHITE)
     GAME_DISPLAY.blit(MAIN_MENU_BTN , ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 160))
     GAME_DISPLAY.blit(continue_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 21, 180))
 
     # new game button
-    new_game_btn = font.render("New Quest (N)", True, TEXT_COLOUR_WHITE)
+    new_game_btn = get_font(18).render("New Quest (N)", True, TEXT_COLOUR_WHITE)
     GAME_DISPLAY.blit(MAIN_MENU_BTN , ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 210))
     GAME_DISPLAY.blit(new_game_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 15, 230))
 
     # settings button
-    settings_btn = font.render("Settings (S)", True, TEXT_COLOUR_WHITE)
+    settings_btn = get_font(18).render("Settings (S)", True, TEXT_COLOUR_WHITE)
     GAME_DISPLAY.blit(MAIN_MENU_BTN , ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 260))
     GAME_DISPLAY.blit(settings_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 23, 280))
 
     # exit button
-    exit_btn = font.render("Quit (Q)", True, TEXT_COLOUR_WHITE)
+    exit_btn = get_font(18).render("Quit (Q)", True, TEXT_COLOUR_WHITE)
     GAME_DISPLAY.blit(MAIN_MENU_BTN, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 310))
     GAME_DISPLAY.blit(exit_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 50, 330))
 
