@@ -151,7 +151,7 @@ def menu_new_option():
 # menu 'settings' option
 def menu_settings_option():
     while running:
-        draw_player()
+        draw_settings()
         pygame.display.flip()
 
         for event in pygame.event.get():
@@ -199,3 +199,4 @@ def main_menu():
 running = True
 while running:
     main_menu()
+    
