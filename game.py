@@ -7,9 +7,9 @@ from pygame import mixer
 pygame.init()
 
 # define window size
-window_width = 1280
-window_height = 720
-game_display = pygame.display.set_mode((window_width, window_height))
+WINDOW_WIDTH = 1280
+WINDOW_HEIGHT = 720
+GAME_DISPLAY = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 # window name
 pygame.display.set_caption("301-QUEST")
@@ -18,89 +18,93 @@ pygame.display.set_caption("301-QUEST")
 font = pygame.font.Font("assets/fonts/Cardinal-Alternate.ttf", 18)
 
 # define text colour (white)
-text_colour = (255, 255, 255)
+TEXT_COLOUR_WHITE = (255, 255, 255)
 
 # define menu window size
-menu_window_width = 400
-menu_window_height = 620
+MENU_WINDOW_WIDTH = 400
+MENU_WINDOW_HEIGHT = 620
 
 # define menu buttons size
-btn_width = 150
-btn_height = 55
+BTN_WIDTH = 150
+BTN_HEIGHT = 55
 
 # images
-bg_img = pygame.image.load('assets/images/bg.png').convert_alpha()
-bg_img = pygame.transform.scale(bg_img, (window_width, window_height))
+BG_IMG = pygame.image.load('assets/images/bg.png').convert_alpha()
+BG_IMG = pygame.transform.scale(BG_IMG, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
-main_menu_bg_img = pygame.image.load('assets/images/main_menu_base.png')
-main_menu_bg_img = pygame.transform.scale(main_menu_bg_img, (menu_window_width , menu_window_height))
+MAIN_MENU_BG_IMG = pygame.image.load('assets/images/main_menu_base.png')
+MAIN_MENU_BG_IMG = pygame.transform.scale(MAIN_MENU_BG_IMG, (MENU_WINDOW_WIDTH, MENU_WINDOW_HEIGHT))
 
-map_img = pygame.image.load('assets/images/map.png').convert_alpha()
-map_img = pygame.transform.scale(map_img, (window_width, window_height))
+MAP_IMG = pygame.image.load('assets/images/map.png').convert_alpha()
+MAP_IMG = pygame.transform.scale(MAP_IMG, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
-new_player_img = pygame.image.load('assets/images/new_player.png').convert_alpha()
-new_player_img = pygame.transform.scale(new_player_img, (window_width, window_height))
+NEW_PLAYER_IMG = pygame.image.load('assets/images/new_player.png').convert_alpha()
+NEW_PLAYER_IMG = pygame.transform.scale(NEW_PLAYER_IMG, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
-settings_img = pygame.image.load('assets/images/game_settings.png').convert_alpha()
-settings_img = pygame.transform.scale(settings_img, (window_width, window_height))
+SETTINGS_IMG = pygame.image.load('assets/images/game_settings.png').convert_alpha()
+SETTINGS_IMG = pygame.transform.scale(SETTINGS_IMG, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
 # main menu buttons
 main_menu_button = pygame.image.load('assets/images/button.png')
-main_menu_button = pygame.transform.scale(main_menu_button, (btn_width, btn_height))
+main_menu_button = pygame.transform.scale(main_menu_button, (BTN_WIDTH, BTN_HEIGHT))
 
 # music - make a music selector function later
 mixer.init()
 mixer.music.load('assets/music/RVW_S6_Moderato.mp3')
 mixer.music.play()
 
+
 # draw functions - combine these into a single function later
 # function to draw background
 def draw_bg():
-    game_display.blit(bg_img, (0, 0))
- 
+    GAME_DISPLAY.blit(BG_IMG, (0, 0))
+
+
 # draw map screen
 def draw_map():
-    game_display.blit(map_img, (0, 0))
+    GAME_DISPLAY.blit(MAP_IMG, (0, 0))
+
 
 # draw new player
 def draw_player():
-    game_display.blit(new_player_img, (0, 0))
+    GAME_DISPLAY.blit(NEW_PLAYER_IMG, (0, 0))
+
 
 # draw settings area
 def draw_settings():
-    game_display.blit(settings_img, (0, 0))
+    GAME_DISPLAY.blit(SETTINGS_IMG, (0, 0))
+
 
 # function to draw menu title
 # sorry, broke some of the positioning of this mr jorge
 def draw_menu():
     # main menu bg
-    game_display.blit(main_menu_bg_img,
-                ((window_width / 2) - (menu_window_width / 2), (window_height / 2) - (menu_window_height / 2)))
+    GAME_DISPLAY.blit(MAIN_MENU_BG_IMG,
+                ((WINDOW_WIDTH / 2) - (MENU_WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - (MENU_WINDOW_HEIGHT / 2)))
 
     # main menu title
-    menu_title = font.render("301-QUEST", True, text_colour)
-    game_display.blit(menu_title, ((window_width / 2) - 51, (window_height / 2) - 128))
-   
+    menu_title = font.render("301-QUEST", True, TEXT_COLOUR_WHITE)
+    GAME_DISPLAY.blit(menu_title, ((WINDOW_WIDTH / 2) - 51, (WINDOW_HEIGHT / 2) - 128))
 
     # continue button
-    continue_btn = font.render("Continue (C)", True, text_colour)
-    game_display.blit(main_menu_button, ((window_width / 2) - (btn_width / 2), 160))
-    game_display.blit(continue_btn, ((window_width / 2) - (btn_width / 2) + 21, 180))
+    continue_btn = font.render("Continue (C)", True, TEXT_COLOUR_WHITE)
+    GAME_DISPLAY.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 160))
+    GAME_DISPLAY.blit(continue_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 21, 180))
 
     # new game button
-    new_game_btn = font.render("New Quest (N)", True, text_colour)
-    game_display.blit(main_menu_button, ((window_width / 2) - (btn_width / 2), 210))
-    game_display.blit(new_game_btn, ((window_width / 2) - (btn_width / 2) + 15, 230))
+    new_game_btn = font.render("New Quest (N)", True, TEXT_COLOUR_WHITE)
+    GAME_DISPLAY.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 210))
+    GAME_DISPLAY.blit(new_game_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 15, 230))
 
     # settings button
-    settings_btn = font.render("Settings (S)", True, text_colour)
-    game_display.blit(main_menu_button, ((window_width / 2) - (btn_width / 2), 260))
-    game_display.blit(settings_btn, ((window_width / 2) - (btn_width / 2) + 23, 280))
+    settings_btn = font.render("Settings (S)", True, TEXT_COLOUR_WHITE)
+    GAME_DISPLAY.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 260))
+    GAME_DISPLAY.blit(settings_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 23, 280))
 
     # exit button
-    exit_btn = font.render("Quit (Q)", True, text_colour)
-    game_display.blit(main_menu_button, ((window_width / 2) - (btn_width / 2), 310))
-    game_display.blit(exit_btn, ((window_width / 2) - (btn_width / 2) + 50, 330))
+    exit_btn = font.render("Quit (Q)", True, TEXT_COLOUR_WHITE)
+    GAME_DISPLAY.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 310))
+    GAME_DISPLAY.blit(exit_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 50, 330))
 
 
 # exit area back to main menu
@@ -112,6 +116,7 @@ def exit_area():
                 map = False
                 main_menu()
 
+
 # change game area
 def change_area(zone):
     set_area = True
@@ -120,7 +125,8 @@ def change_area(zone):
         selected_area()
         pygame.display.flip()
         exit_area()
-                    
+
+
 # main menu
 def main_menu():
     main_menu = True
