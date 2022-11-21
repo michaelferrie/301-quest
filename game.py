@@ -45,8 +45,8 @@ SETTINGS_IMG = pygame.image.load('assets/images/game_settings.png').convert_alph
 SETTINGS_IMG = pygame.transform.scale(SETTINGS_IMG, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
 # main menu buttons
-main_menu_button = pygame.image.load('assets/images/button.png')
-main_menu_button = pygame.transform.scale(main_menu_button, (BTN_WIDTH, BTN_HEIGHT))
+MAIN_MENU_BTN = pygame.image.load('assets/images/button.png')
+MAIN_MENU_BTN  = pygame.transform.scale(MAIN_MENU_BTN, (BTN_WIDTH, BTN_HEIGHT))
 
 # music - make a music selector function later
 mixer.init()
@@ -88,22 +88,22 @@ def draw_menu():
 
     # continue button
     continue_btn = font.render("Continue (C)", True, TEXT_COLOUR_WHITE)
-    GAME_DISPLAY.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 160))
+    GAME_DISPLAY.blit(MAIN_MENU_BTN , ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 160))
     GAME_DISPLAY.blit(continue_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 21, 180))
 
     # new game button
     new_game_btn = font.render("New Quest (N)", True, TEXT_COLOUR_WHITE)
-    GAME_DISPLAY.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 210))
+    GAME_DISPLAY.blit(MAIN_MENU_BTN , ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 210))
     GAME_DISPLAY.blit(new_game_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 15, 230))
 
     # settings button
     settings_btn = font.render("Settings (S)", True, TEXT_COLOUR_WHITE)
-    GAME_DISPLAY.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 260))
+    GAME_DISPLAY.blit(MAIN_MENU_BTN , ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 260))
     GAME_DISPLAY.blit(settings_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 23, 280))
 
     # exit button
     exit_btn = font.render("Quit (Q)", True, TEXT_COLOUR_WHITE)
-    GAME_DISPLAY.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 310))
+    GAME_DISPLAY.blit(MAIN_MENU_BTN, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 310))
     GAME_DISPLAY.blit(exit_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 50, 330))
 
 
