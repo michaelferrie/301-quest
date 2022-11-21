@@ -18,7 +18,7 @@ pygame.display.set_caption("301-QUEST")
 # define fonts
 # returns the font with the desired size
 def get_font(size):
-    return pygame.font.Font("assets/font.ttf", size)
+    return pygame.font.Font("assets/fonts/Cardinal.ttf", size)
 
 
 # define text colour (white)
