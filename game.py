@@ -12,7 +12,7 @@ WINDOW_HEIGHT = 500
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 # window name
-pygame.display.set_caption("RPG GAME")
+pygame.display.set_caption("301-QUEST")
 
 # define fonts
 font = pygame.font.Font("assets/fonts/Cardinal-Alternate.ttf", 18)
@@ -30,6 +30,7 @@ BTN_HEIGHT = 55
 
 # set game attributes
 # images
+
 bg_img = pygame.image.load('assets/images/bg.png')
 bg_img = pygame.transform.scale(bg_img, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
@@ -38,6 +39,10 @@ map_img = pygame.transform.scale(map_img, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
 main_menu_bg_img = pygame.image.load('assets/images/main_menu_base.png')
 main_menu_bg_img = pygame.transform.scale(main_menu_bg_img, (MENU_WINDOW_WIDTH , MENU_WINDOW_HEIGHT))
+
+# create images index
+bg_images = [bg_img, map_img]
+bg_index = 0
 
 
 # main menu buttons
@@ -98,10 +103,12 @@ while running:
     for event in pygame.event.get():
         draw_bg()
         draw_menu()
+        
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_c:
                     print('Continue')
-                    draw_map()
+                    bg_index = 1
+                    pygame.display.update()
             if event.key == pygame.K_n:
                     print('New Quest')
             if event.key == pygame.K_s:
@@ -111,5 +118,16 @@ while running:
                 print('Quit')
 
     pygame.display.update()
+    
+# map area
+running = True
+while running:
+   
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q:
+                    print('Quit')
+                    running = False
 
 pygame.quit()
+
