@@ -1,7 +1,8 @@
 # import libraries
 import pygame
-from pygame.locals import *
+import sys
 from pygame import mixer
+from pygame.locals import *
 
 # initialise game
 pygame.init()
@@ -111,54 +112,90 @@ def draw_menu():
     GAME_DISPLAY.blit(exit_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 50, 330))
 
 
-# exit area back to main menu
-def exit_area():
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_q or pygame.K_ESCAPE:
-                print('Quitting')
-                map = False
-                main_menu()
-
-
-# change game area
-def change_area(zone):
-    set_area = True
-    selected_area = zone
-    while set_area:
-        selected_area()
+# menu 'continue quest' option
+def menu_continue_option():
+    while running:
+        draw_map()
         pygame.display.flip()
-        exit_area()
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q or pygame.K_ESCAPE:
+                    print('Back to main menu')
+                    main_menu()
+
+        pygame.display.update()
+
+
+# menu 'new quest' option
+def menu_new_option():
+    while running:
+        draw_player()
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q or pygame.K_ESCAPE:
+                    print('Back to main menu')
+                    main_menu()
+
+        pygame.display.update()
+
+
+# menu 'settings' option
+def menu_settings_option():
+    while running:
+        draw_player()
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q or pygame.K_ESCAPE:
+                    print('Back to main menu')
+                    main_menu()
+
+        pygame.display.update()
 
 
 # main menu
 def main_menu():
-    main_menu = True
-    while main_menu:
+    while running:
         draw_bg()
         draw_menu()
         pygame.display.flip()
+
         for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_c:
-                    print('Continue')
-                    running = False
-                    change_area(draw_map)
+                    print('Continue Quest Option')
+                    menu_continue_option()
                 if event.key == pygame.K_n:
-                    print('New Quest')
-                    running = False
-                    change_area(draw_player)
+                    print('New Quest Option')
+                    menu_new_option()
                 if event.key == pygame.K_s:
-                    print('Settings')
-                    running = False
-                    change_area(draw_settings)
+                    print('Settings Options')
+                    menu_settings_option()
                 if event.key == pygame.K_q or pygame.K_ESCAPE:
                     print('Quitting')
                     pygame.quit()
+                    sys.exit()
+
+        pygame.display.update()
+
 
 # main game loop
 running = True
 while running:
     main_menu()
-    
-pygame.quit()
