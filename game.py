@@ -30,20 +30,20 @@ BTN_HEIGHT = 55
 
 # set game attributes
 # images
-
-bg_img = pygame.image.load('assets/images/bg.png')
+bg_img = pygame.image.load('assets/images/bg.png').convert_alpha()
 bg_img = pygame.transform.scale(bg_img, (WINDOW_WIDTH, WINDOW_HEIGHT))
-
-map_img = pygame.image.load('assets/images/map.png')
-map_img = pygame.transform.scale(map_img, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
 main_menu_bg_img = pygame.image.load('assets/images/main_menu_base.png')
 main_menu_bg_img = pygame.transform.scale(main_menu_bg_img, (MENU_WINDOW_WIDTH , MENU_WINDOW_HEIGHT))
 
-# create images index
-bg_images = [bg_img, map_img]
-bg_index = 0
+map_img = pygame.image.load('assets/images/map.png').convert_alpha()
+map_img = pygame.transform.scale(map_img, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
+new_player_img = pygame.image.load('assets/images/new_player.png').convert_alpha()
+new_player_img = pygame.transform.scale(new_player_img, (WINDOW_WIDTH, WINDOW_HEIGHT))
+
+settings_img = pygame.image.load('assets/images/game_settings.png').convert_alpha()
+settings_img = pygame.transform.scale(settings_img, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
 # main menu buttons
 main_menu_button = pygame.image.load('assets/images/button.png')
@@ -59,10 +59,17 @@ mixer.music.play()
 def draw_bg():
     window.blit(bg_img, (0, 0))
     
-# draw Map Screen
+# draw map screen
 def draw_map():
     window.blit(map_img, (0, 0))
 
+# draw new player
+def draw_player():
+    window.blit(new_player_img, (0, 0))
+
+# draw settings area
+def draw_settings():
+    window.blit(settings_img, (0, 0))
 
 # function to draw menu title
 def draw_menu():
@@ -95,39 +102,73 @@ def draw_menu():
     window.blit(main_menu_button, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2), 310))
     window.blit(exit_btn, ((WINDOW_WIDTH / 2) - (BTN_WIDTH / 2) + 50, 330))
 
+# map area loop
+def game_map():
+    map_area = True
+    while map_area:
+        draw_map()
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    print('Quitting')
+                    map = False
+                    main_menu()
+
+# new game area loop
+def new_player():
+    player_area = True
+    while player_area:
+        draw_player()
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    print('Quitting')
+                    player_area = False
+                    main_menu()
+                    
+# settings area loop
+def settings():
+    settings_area = True
+    while settings_area:
+        draw_settings()
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    print('Quitting')
+                    settings_area = False
+                    main_menu()
+                    
+# main menu loop
+def main_menu():
+    main_menu = True
+    while main_menu:
+        draw_bg()
+        draw_menu()
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_c:
+                    print('Continue')
+                    running = False
+                    game_map()
+                if event.key == pygame.K_n:
+                    print('New Quest')
+                    running = False
+                    new_player()
+                if event.key == pygame.K_s:
+                    print('Settings')
+                    running = False
+                    settings()
+                if event.key == pygame.K_q:
+                    print('Quitting')
+                    pygame.quit()
+
 # main game loop
 running = True
 while running:
-
-    # event for menu
-    for event in pygame.event.get():
-        draw_bg()
-        draw_menu()
-        
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_c:
-                    print('Continue')
-                    bg_index = 1
-                    pygame.display.update()
-            if event.key == pygame.K_n:
-                    print('New Quest')
-            if event.key == pygame.K_s:
-                    print('Settings')
-            if event.key == pygame.K_q:
-                running = False
-                print('Quit')
-
-    pygame.display.update()
+    main_menu()
     
-# map area
-running = True
-while running:
-   
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_q:
-                    print('Quit')
-                    running = False
-
 pygame.quit()
-
